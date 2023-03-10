@@ -11,7 +11,9 @@ class Ship:
 
         # Load the image of the ship and get a rectangle.
         self.image = pygame.image.load('images/ship.png')
+        self.image = pygame.transform.scale(self.image, (80, 100))
         self.rect = self.image.get_rect()
+
         # Each new ship appears at the bottom of the screen.
         self.rect.midbottom = self.screen_rect.midbottom
 
