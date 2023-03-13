@@ -36,10 +36,12 @@ class AlienInvasion:
         """Launching the main game loop."""
         while True:
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_aliens()
-            self._update_screen()
+
+            if self.stats.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
+                self._update_screen()
 
     def _check_events(self):
         """Handles key presses and mouse events."""
@@ -99,19 +101,22 @@ class AlienInvasion:
 
     def _ship_hit(self):
         """Handles ship-alien collision."""
-        # Decrease ships_left.
-        self.stats.ships_left -= 1
+        if self.stats.ships_left > 0:
+            # Decrease ships_left.
+            self.stats.ships_left -= 1
 
-        # Clean up lists of aliens and shells.
-        self.aliens.empty()
-        self.bullets.empty()
+            # Clean up lists of aliens and shells.
+            self.aliens.empty()
+            self.bullets.empty()
 
-        # Creating a new fleet and placing the ship in the center.
-        self._create_fleet()
-        self.ship.center_ship()
+            # Creating a new fleet and placing the ship in the center.
+            self._create_fleet()
+            self.ship.center_ship()
 
-        # Pause
-        sleep(0.5)
+            # Pause
+            sleep(0.5)
+        else:
+            self.stats.game_active = False
 
     def _create_fleet(self):
         """Building an invasion fleet."""
