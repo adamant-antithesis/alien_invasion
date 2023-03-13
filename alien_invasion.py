@@ -198,7 +198,7 @@ class AlienInvasion:
         # Determines the number of rows that fit on the screen
         ship_height = self.ship.rect.height
         available_space_y = (self.settings.screen_height -
-                             (3 * alien_height) - ship_height)
+                             (3 * alien_height) - (3 * ship_height))
         number_rows = available_space_y // (2 * alien_height)
 
         # Creation of an invasion fleet.
