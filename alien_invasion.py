@@ -80,6 +80,15 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                  self.bullets.remove(bullet)
 
+        if not self.aliens:
+            # Destruction of existing shells and the creation of a new fleet.
+            self.bullets.empty()
+            self._create_fleet()
+
+        # When a hit is detected, remove the projectile and the alien.
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+
+
     def _create_fleet(self):
         """Building an invasion fleet."""
         # Create an alien and calculate the number of aliens in a row
