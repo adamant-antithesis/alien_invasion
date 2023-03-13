@@ -76,6 +76,8 @@ class AlienInvasion:
             self.stats.reset_stats()
             self.stats.game_active = True
             self.sb.prep_score()
+            self.sb.prep_level()
+            self.sb.prep_ships()
 
             # Clean up lists of aliens and projectiles.
             self.aliens.empty()
@@ -138,11 +140,16 @@ class AlienInvasion:
             self._create_fleet()
             self.settings.increase_speed()
 
+            # Level increase.
+            self.stats.level += 1
+            self.sb.prep_level()
+
     def _ship_hit(self):
         """Handles ship-alien collision."""
         if self.stats.ships_left > 0:
-            # Decrease ships_left.
+            # Decrease ships_left and update scoreboard
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
 
             # Clean up lists of aliens and shells.
             self.aliens.empty()
