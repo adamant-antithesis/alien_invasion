@@ -67,6 +67,8 @@ class AlienInvasion:
         if button_clicked and not self.stats.game_active:
             # The mouse pointer is hidden.
             pygame.mouse.set_visible(False)
+            # Reset game settings.
+            self.settings.initialize_dynamic_settings()
 
             # Reset game statistics.
             self.stats.reset_stats()
@@ -125,6 +127,7 @@ class AlienInvasion:
             # Destruction of existing shells and the creation of a new fleet.
             self.bullets.empty()
             self._create_fleet()
+            self.settings.increase_speed()
 
     def _ship_hit(self):
         """Handles ship-alien collision."""
