@@ -10,6 +10,7 @@ class Settings:
 
         # Ship parameters
         self.ship_speed = 1.5
+        self.ship_limit = 3
 
         # Bullets parameters
         self.bullet_speed = 2
@@ -19,7 +20,7 @@ class Settings:
         self.bullets_allowed = 5
 
         # Alien parameters
-        self.alien_speed = 1.0
+        self.alien_speed = 5.3
         self.fleet_drop_speed = 10
         # fleet_direction = 1 indicates movement to the right; and -1 - to the left.
         self.fleet_direction = 1
